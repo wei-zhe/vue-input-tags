@@ -5,6 +5,7 @@
         v-model   = "parentValue"
         :width    = "500"
         :height   = "500"
+        :setting  = 'setting'
       >
       </vue-inputTags>
     </div>
@@ -16,11 +17,29 @@ export default {
   name: 'app',
   data() {
     return {
-      parentValue : '123',
+      parentValue : [
+        {
+          title : '第一个标签first'
+        },
+        {
+          title : '第二个标签'
+        },
+        {
+          title : '第三个标签'
+        },
+        {
+          title : '第四个标签last'
+        },
+      ],
+      setting : {
+        wordage : 3,
+        ArrayLength: 5,
+      },
     }
   },
   watch : {
     'parentValue': function(val, oldval) {
+      console.log(this.parentValue);
     },
   },
   methods: {
