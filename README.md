@@ -1,6 +1,6 @@
 # vue-input-tags
 
-> vue-input-tags
+> A Vue.js project
 
 ## Build Setup
 
