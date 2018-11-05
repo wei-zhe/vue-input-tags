@@ -9,10 +9,10 @@
         <div 
             class="scrollbox"
             :style="{
-                'width' : width - 5  + 'px',
-                'height' : height - 5 + 'px',
-                'padding-right'  : '36px',
-                'padding-bottom' : '36px',
+                'width' : width - 10  + 'px',
+                'height' : height - 10 + 'px',
+                'padding-right'  : '41px',
+                'padding-bottom' : '41px',
             }"
         >
             <div 
@@ -179,8 +179,8 @@ export default {
             input{
                 background-color: rgba(0,0,0,0);
                 border: none;
+                border-bottom: 1px solid #ddd;
                 &:focus{
-                    border-bottom: 1px solid #ddd;
                     outline: none;  
                 }
             }

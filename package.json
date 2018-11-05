@@ -1,10 +1,19 @@
 {
-  "name": "vue-input-tagst",
-  "description": "vue-input-tagst",
+  "name": "vue-input-tags",
+  "description": "A Vue component to  input-tagst",
   "version": "1.0.0",
   "author": "WeiZhe <2270734250@qq.com>",
   "license": "MIT",
-  "private": true,
+  "main": "dist/vue-input-tags.js",
+  "private": false,
+  "files": [  
+    "dist",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wei-zhe/vue-input-tags.git"
+  },
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"

@@ -1,6 +1,6 @@
-# vue-input-tagst
+# vue-input-tags
 
-> vue-input-tagst
+> vue-input-tags
 
 ## Build Setup
 

@@ -1,4 +1,4 @@
-import vueInputTags from './vue-input-tagst.vue' // 导入组件
+import vueInputTags from './vue-input-tags.vue' // 导入组件
 const inputTags = {
     install (Vue, options) {
         Vue.component(vueInputTags.name, vueInputTags)  // vuePayKeyboard.name 组件的name属性
