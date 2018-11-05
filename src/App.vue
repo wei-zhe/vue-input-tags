@@ -3,8 +3,8 @@
     <div class="canvasBox">
       <vue-inputTags 
         v-model   = "parentValue"
-        :width    = "500"
-        :height   = "500"
+        :width    = "200"
+        :height   = "50"
         :setting  = 'setting'
       >
       </vue-inputTags>

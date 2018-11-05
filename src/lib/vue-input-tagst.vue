@@ -7,41 +7,52 @@
         class="inputTags" 
     >
         <div 
-            class="itemTags" 
-            v-for="(item, index) in value"
+            class="scrollbox"
             :style="{
-                'max-width' : titleStyle.minWidth + 10 + 'px',
+                'width' : width - 5  + 'px',
+                'height' : height - 5 + 'px',
+                'padding-right'  : '36px',
+                'padding-bottom' : '36px',
             }"
         >
             <div 
-                class="titleMsg"
+                class="itemTags" 
+                v-for="(item, index) in value"
                 :style="{
                     'max-width' : titleStyle.minWidth + 10 + 'px',
                 }"
             >
-                <i class="mask"></i>
-                <span 
-                    class="iconBtn"
-                    v-if="iconFont.close"
-                    v-html="iconFont.close.htmlSvg"
-                    @click="removeItem(index)"
-                ></span>
-                {{item.title.slice(0, Tsetting.wordage)}}
+                <div 
+                    class="titleMsg"
+                    :style="{
+                        'max-width' : titleStyle.minWidth + 10 + 'px',
+                    }"
+                >
+                    <i class="mask"></i>
+                    <span 
+                        class="iconBtn"
+                        v-if="iconFont.close"
+                        v-html="iconFont.close.htmlSvg"
+                        @click="removeItem(index)"
+                    ></span>
+                    {{item.title.slice(0, Tsetting.wordage)}}
+                </div>
+            </div>
+            
+            <div 
+                v-if="value.length < Tsetting.ArrayLength"
+                class="inputBox"
+                v-on:keyup.enter="addValue($event, false)"
+            >
+                <input 
+                    v-model="inputData.value" 
+                    type="text"
+                    placeholder="请输入标签"
+                    :maxlength="Tsetting.wordage"
+                />
             </div>
         </div>
-        
-        <div 
-            v-if="value.length < Tsetting.ArrayLength"
-            class="inputBox"
-            v-on:keyup.enter="addValue($event, false)"
-        >
-            <input 
-                v-model="inputData.value" 
-                type="text"
-                placeholder="请输入标签"
-                :maxlength="Tsetting.wordage"
-            />
-        </div>
+
     </div>
 </template>
 <script>
@@ -145,78 +156,81 @@ export default {
     width: 100%;
     height: 100%;
     position: relative;
-    display: flex;
-    align-content: flex-start;
-    flex-wrap: wrap;
     border-radius: 5px;
     border: 1px solid #808080;
-    padding: 5px;
     overflow: hidden;
     font-size: 15px;
-    *{
-        user-select: none !important;
-    }
-    .inputBox{
-        width: auto;
-        height: auto;
-        transition: all 0.3s;
-        margin: 0 3px;
-        margin-bottom: 6px;
-        background-color: rgba(0,0,0,0);
-        input{
+    .scrollbox{
+        display: flex;
+        align-content: flex-start;
+        flex-wrap: wrap;
+        overflow: scroll;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 5px;
+        .inputBox{
+            width: auto;
+            height: auto;
+            transition: all 0.3s;
+            margin: 0 3px;
+            margin-bottom: 6px;
             background-color: rgba(0,0,0,0);
-            border: none;
-            &:focus{
-                border-bottom: 1px solid #ddd;
-                outline: none;  
+            input{
+                background-color: rgba(0,0,0,0);
+                border: none;
+                &:focus{
+                    border-bottom: 1px solid #ddd;
+                    outline: none;  
+                }
             }
         }
-    }
-    .itemTags{
-        width: auto;
-        height: 20px;
-        transition: all 0.3s;
-        margin: 0 3px;
-        margin-bottom: 6px;
-        .titleMsg{
-            min-width: 30px;
-            background: #ddd;
-            padding: 0 5px;
-            border-radius: 5px;
-            overflow: hidden;
-            position: relative;
-            &:hover{
-                .iconBtn{
-                    right: 5px;
+        .itemTags{
+            width: auto;
+            height: 20px;
+            transition: all 0.3s;
+            margin: 0 3px;
+            margin-bottom: 6px;
+            .titleMsg{
+                min-width: 30px;
+                background: #ddd;
+                padding: 0 5px;
+                border-radius: 5px;
+                overflow: hidden;
+                position: relative;
+                &:hover{
+                    .iconBtn{
+                        right: 5px;
+                    }
+                    .mask{
+                    left: 0px; 
+                    }
                 }
                 .mask{
-                   left: 0px; 
+                    position: absolute;
+                    left: -100%;
+                    top: 0px; 
+                    z-index: 5; 
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(66, 63, 63, 0.5);
+                    transition: all 0.3s;
                 }
-            }
-            .mask{
-                position: absolute;
-                left: -100%;
-                top: 0px; 
-                z-index: 5; 
-                width: 100%;
-                height: 100%;
-                background: rgba(66, 63, 63, 0.5);
-                transition: all 0.3s;
-            }
-            .iconBtn{
-                position: absolute;
-                right: -25px;
-                top: 4px;
-                z-index: 10;
-                width: 13px;
-                height: 13px;
-                background: #ddd;
-                border-radius: 100%;
-                cursor: pointer;
-                transition: all 0.3s;
+                .iconBtn{
+                    position: absolute;
+                    right: -25px;
+                    top: 4px;
+                    z-index: 10;
+                    width: 13px;
+                    height: 13px;
+                    background: #ddd;
+                    border-radius: 100%;
+                    cursor: pointer;
+                    transition: all 0.3s;
 
-                &:hover{
-                    background: #fff;
+                    &:hover{
+                        background: #fff;
+                    }
                 }
             }
         }
