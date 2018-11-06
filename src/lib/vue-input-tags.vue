@@ -43,6 +43,7 @@
                 v-if="value.length < Tsetting.ArrayLength"
                 class="inputBox"
                 v-on:keyup.enter="addValue($event, false)"
+                v-on:keyup.delete="delInputDataVal($event)"
             >
                 <input 
                     v-model="inputData.value" 
@@ -71,7 +72,8 @@ export default {
                 minWidth : 0
             },
             inputData  : {
-                value   : '第五个',  
+                value   : '',
+                keyDelete : false,
             },
             Tsetting   : {}, 
         }
@@ -125,6 +127,7 @@ export default {
         removeItem(index){
             let valueArray = this.value;
             valueArray.splice(index, 1);
+            this.inputData.keyDelete = false;
             this.$emit('updateInputTags', valueArray)
         },
         addValue(el, action){     // 添加标签
@@ -135,7 +138,6 @@ export default {
                 this.inputData.value = this.inputData.value.slice(0, 5);
             }
             let valueArray = this.value;
-            console.log(valueArray.length , this.Tsetting.ArrayLength)
             if(valueArray.length < this.Tsetting.ArrayLength){
                 valueArray.push({ title: this.inputData.value });
             }
@@ -143,7 +145,20 @@ export default {
                 el.path[0].blur();
             }
             this.inputData.value = '';
+            this.inputData.keyDelete = false;
             this.$emit('updateInputTags', valueArray)
+        },
+        delInputDataVal(e){
+
+            if(this.inputData.keyDelete){
+                this.removeItem(this.value.length-1);
+                return;
+            }
+            if(this.inputData.value.length){
+                this.inputData.keyDelete = false;
+            }else{
+                this.inputData.keyDelete = true;
+            }
         },
         trimStr(str){
             return str.replace(/(^\s*)|(\s*$)/g,"");
