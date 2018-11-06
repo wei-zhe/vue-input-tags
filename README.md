@@ -31,4 +31,4 @@ setting : {
     ArrayLength : 5,    // 标签数量
 },
  ```
-![inputTags](/readmeimg/inputtags.jpg)
+![inputTags](./readmeimg/inputtags.jpg)
